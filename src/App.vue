@@ -1,18 +1,37 @@
 <template>
   <div class="app">
     <div class="app__btn-block">
-      <button class="app__btn">{{ text }}</button>
+      <button class="app__btn" v-on:click="setState">{{ text }}</button>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'App',
   data () {
     return {
-      text: 'text'
+      state: 0,
+      text: 'medved'
+    }
+  },
+  created () {
+    this.getStat()
+    this.render()
+  },
+  methods: {
+    render () {
+      this.state === 1 ? this.text = 'preved' : this.text = 'medved'
+    },
+    setState () {
+      this.state = this.state === 0 ? 1 : 0
+      this.$socket.sendObj({state: this.state})
+    },
+    getStat () {
+      this.$options.sockets.onmessage = data => {
+        this.state = JSON.parse(data.data).state
+        this.render()
+      }
     }
   }
 }
