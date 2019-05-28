@@ -1,12 +1,20 @@
 <template>
   <div class="app">
+    <div class="app__btn-block">
+      <button class="app__btn">{{ text }}</button>
+    </div>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      text: 'text'
+    }
+  }
 }
 </script>
 
@@ -17,5 +25,26 @@ export default {
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-  margin-top 60px
+  margin-top 360px
+
+  &__btn-block
+    margin auto
+    width 300px
+
+  &__btn
+    width 300px
+    height 150px
+    font-size 40px
+    color gold
+    background crimson
+    outline none
+    border none
+    border-radius 10px
+
+    &:hover
+      opacity .7
+
+    &_clicked
+      background brown
+
 </style>
