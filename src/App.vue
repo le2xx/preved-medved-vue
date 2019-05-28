@@ -1,7 +1,10 @@
 <template>
   <div class="app">
     <div class="app__btn-block">
-      <button class="app__btn" v-on:click="setState">{{ text }}</button>
+      <button class="app__btn"
+        v-bind:class="{ app__btn_state_1: !state }"
+        v-on:click="setState">{{ text }}
+      </button>
     </div>
   </div>
 </template>
@@ -61,9 +64,8 @@ export default {
     border-radius 10px
 
     &:hover
-      opacity .7
+      opacity .8
 
-    &_clicked
-      background brown
-
+    &_state_1
+      background orangered
 </style>
